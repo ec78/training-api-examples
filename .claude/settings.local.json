@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cmd.exe /c \"where python\")",
+      "Bash(powershell.exe -Command \"Get-Command python | Select-Object -ExpandProperty Source; python --version\")",
+      "Bash(powershell.exe -Command \"Get-Command conda,py,python3 -ErrorAction SilentlyContinue | Select-Object Name,Source\")",
+      "Bash(powershell.exe -Command \"& 'C:\\\\Users\\\\eric.clower\\\\Documents\\\\GitHub\\\\training-api-examples\\\\.venv\\\\Scripts\\\\python.exe' -c 'import requests; from dotenv import load_dotenv; import os; print\\(\\\\\"imports OK\\\\\"\\)'\")",
+      "Bash(powershell.exe -Command \"& 'C:\\\\Users\\\\eric.clower\\\\Documents\\\\GitHub\\\\training-api-examples\\\\.venv\\\\Scripts\\\\python.exe' -c \\\\\"import requests; from dotenv import load_dotenv; import os; print\\('imports OK'\\)\\\\\"\")"
+    ]
+  }
+}
