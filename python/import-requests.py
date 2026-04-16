@@ -36,8 +36,9 @@ def get_token(username, password):
     resp = requests.post(AUTH_URL, json=payload, headers=headers)
     resp.raise_for_status()
     
-    # The IMPLAN API returns the token as a plain string, not a JSON 
-    return resp.json()
+    # The IMPLAN API returns the token with "Bearer " already prepended.
+    # Strip it here so build_headers can add it back cleanly.
+    return resp.text.removeprefix("Bearer ")
 
 def build_headers(token):
     """Build the Authorization headers required for all subsequent API calls."""
