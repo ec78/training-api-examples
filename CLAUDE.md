@@ -15,19 +15,19 @@ Training examples for the IMPLAN API, written in Python. Scripts are flat, annot
 
 - Python 3.14 via `C:\Users\eric.clower\.local\bin\python3.14.exe`
 - Virtual environment: `.venv\` at the project root
-- Run scripts: `.venv\Scripts\python.exe python\<script>.py`
+- Run scripts: `.venv\Scripts\python.exe "python/getting started/<script>.py"`
 - Install a package: `.venv\Scripts\python.exe -m pip install <package>`
 
 ## Credentials
 
-All scripts load credentials from `python\.env`:
+All scripts load credentials from `python\getting started\.env`:
 
 ```
 IMPLAN_USERNAME=you@firm.com
 IMPLAN_PASSWORD=yourpassword
 ```
 
-`python\.env` is gitignored. Never hardcode credentials in scripts.
+`**/.env` is gitignored. Never hardcode credentials in scripts.
 
 ## IMPLAN API Patterns
 

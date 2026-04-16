@@ -52,7 +52,7 @@ pip install requests python-dotenv
 
 **4. Create your credentials file**
 
-Create a file at `python/.env` with your IMPLAN login:
+Create a file at `python/getting started/.env` with your IMPLAN login:
 
 ```
 IMPLAN_USERNAME=you@yourfirm.com
@@ -65,12 +65,12 @@ IMPLAN_PASSWORD=yourpassword
 
 ## The Workflow: Step by Step
 
-Run each script from the `python/` directory in order. Each script prints the ID(s) you need to carry into the next step.
+All scripts are in the `python/getting started/` folder. Each script prints the ID(s) you need to carry into the next step.
 
 ---
 
 ### Step 1 — Authenticate
-**File:** `import-requests.py`
+**File:** `python/getting started/import-requests.py`
 
 Exchanges your credentials for a Bearer token. This is a reference script — all subsequent scripts include authentication internally.
 
@@ -79,10 +79,10 @@ Exchanges your credentials for a Bearer token. This is a reference script — al
 ---
 
 ### Step 2 — Get Available Datasets
-**File:** `get-datasets.py`
+**File:** `python/getting started/get-datasets.py`
 
 ```bash
-python get-datasets.py
+python "python/getting started/get-datasets.py"
 ```
 
 Returns the data years available for your aggregation scheme (e.g. 2021, 2022, 2023). Each dataset has a numeric ID.
@@ -92,10 +92,10 @@ Returns the data years available for your aggregation scheme (e.g. 2021, 2022, 2
 ---
 
 ### Step 3 — Find Your Region
-**File:** `find-region.py`
+**File:** `python/getting started/find-region.py`
 
 ```bash
-python find-region.py
+python "python/getting started/find-region.py"
 ```
 
 Looks up geographic regions (states, counties, MSAs) available for your dataset. Edit the configuration section at the top to set your aggregation scheme ID, dataset ID, region type, and search term.
@@ -105,10 +105,10 @@ Looks up geographic regions (states, counties, MSAs) available for your dataset.
 ---
 
 ### Step 4 — Look Up Industry Codes
-**File:** `get-industry-codes.py`
+**File:** `python/getting started/get-industry-codes.py`
 
 ```bash
-python get-industry-codes.py
+python "python/getting started/get-industry-codes.py"
 ```
 
 Returns the list of industries available under your aggregation scheme. Edit the `SEARCH` variable to filter by keyword (e.g. `"construction"`, `"health"`, `"retail"`).
@@ -118,10 +118,10 @@ Returns the list of industries available under your aggregation scheme. Edit the
 ---
 
 ### Step 5 — Create a Project
-**File:** `create-project.py`
+**File:** `python/getting started/create-project.py`
 
 ```bash
-python create-project.py
+python "python/getting started/create-project.py"
 ```
 
 Creates the project container that will hold your analysis. A project ties together the aggregation scheme, household data, and all events.
@@ -131,10 +131,10 @@ Creates the project container that will hold your analysis. A project ties toget
 ---
 
 ### Step 6 — Add Events and Groups
-**File:** `add-events.py`
+**File:** `python/getting started/add-events.py`
 
 ```bash
-python add-events.py
+python "python/getting started/add-events.py"
 ```
 
 This script does two things:
@@ -148,10 +148,10 @@ Edit the configuration section with your Project ID, Region Hash ID, Dataset ID,
 ---
 
 ### Step 7 — Run the Analysis
-**File:** `run-analysis.py`
+**File:** `python/getting started/run-analysis.py`
 
 ```bash
-python run-analysis.py
+python "python/getting started/run-analysis.py"
 ```
 
 Triggers the I-O model calculation. IMPLAN processes the analysis in the background and returns a Run ID immediately. Small analyses typically complete within seconds.
@@ -161,10 +161,10 @@ Triggers the I-O model calculation. IMPLAN processes the analysis in the backgro
 ---
 
 ### Step 8 — Get Results
-**File:** `get-results.py`
+**File:** `python/getting started/get-results.py`
 
 ```bash
-python get-results.py
+python "python/getting started/get-results.py"
 ```
 
 Retrieves the Summary Economic Indicators for your completed analysis — direct, indirect, and induced effects across Employment, Labor Income, Value Added, and Output.
@@ -228,15 +228,17 @@ LLMs are excellent companions for API work. Here are the most effective ways to 
 ```
 training-api-examples/
 ├── python/
-│   ├── .env                  # Your credentials (gitignored — never committed)
-│   ├── import-requests.py    # Step 1: Authentication reference
-│   ├── get-datasets.py       # Step 2: Available data years
-│   ├── find-region.py        # Step 3: Geographic region lookup
-│   ├── get-industry-codes.py # Step 4: Industry code lookup
-│   ├── create-project.py     # Step 5: Create analysis project
-│   ├── add-events.py         # Step 6: Add events and groups
-│   ├── run-analysis.py       # Step 7: Trigger I-O model
-│   └── get-results.py        # Step 8: Retrieve results
+│   └── getting started/
+│       ├── .env                  # Your credentials (gitignored — never committed)
+│       ├── import-requests.py    # Step 1: Authentication reference
+│       ├── get-datasets.py       # Step 2: Available data years
+│       ├── find-region.py        # Step 3: Geographic region lookup
+│       ├── get-industry-codes.py # Step 4: Industry code lookup
+│       ├── create-project.py     # Step 5: Create analysis project
+│       ├── add-events.py         # Step 6: Add events and groups
+│       ├── run-analysis.py       # Step 7: Trigger I-O model
+│       └── get-results.py        # Step 8: Retrieve results
 ├── .gitignore
+├── CLAUDE.md
 └── README.md
 ```
