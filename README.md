@@ -1,27 +1,24 @@
 # IMPLAN API Training Examples
 
-A set of beginner-friendly Python scripts that walk through the full IMPLAN API workflow — from authentication to retrieving economic impact results. Each script is self-contained, heavily annotated, and designed to be run one step at a time.
+Beginner-friendly Python scripts that walk through the full IMPLAN API workflow — from authentication to retrieving economic impact results. Each script is self-contained, heavily annotated, and designed to be run one step at a time.
 
 **API Reference:** https://github.com/Implan-Group/api/wiki  
-**Sample Code:** https://github.com/Implan-Group/api
+**Sample Code:** https://github.com/Implan-Group/api  
+**LLM Reference:** [LLM_REFERENCE.md](LLM_REFERENCE.md) — context file for AI-assisted development
 
 ---
 
-## What You Will Build
+## Who This Is For
 
-By the end of this walkthrough you will have used the IMPLAN API to run a complete economic impact analysis programmatically:
-
-```
-Authenticate → Get Datasets → Find Region → Get Industry Codes
-    → Create Project → Add Events → Run Analysis → Get Results
-```
+Developers and analysts who have IMPLAN API access and want to understand how to drive the API programmatically. No prior API experience is assumed. The scripts and comments are written for a first-time audience.
 
 ---
 
 ## Prerequisites
 
 - Python 3.9 or later
-- A valid IMPLAN account with API access
+- A valid IMPLAN account with API access enabled
+- `requests` and `python-dotenv` packages (installed in setup below)
 
 ---
 
@@ -30,7 +27,7 @@ Authenticate → Get Datasets → Find Region → Get Industry Codes
 **1. Clone the repository**
 
 ```bash
-git clone https://github.com/<your-username>/training-api-examples.git
+git clone https://github.com/Implan-Group/training-api-examples.git
 cd training-api-examples
 ```
 
@@ -52,174 +49,112 @@ pip install requests python-dotenv
 
 **4. Create your credentials file**
 
-Create a file at `python/getting started/.env` with your IMPLAN login:
+Create a `.env` file in the series folder you plan to run (e.g. `python/getting started/.env`):
 
 ```
 IMPLAN_USERNAME=you@yourfirm.com
 IMPLAN_PASSWORD=yourpassword
 ```
 
-> **Important:** The `.env` file is listed in `.gitignore` and will not be committed to GitHub. Never hardcode credentials in your scripts.
+> The `.env` file is listed in `.gitignore` and will never be committed. Never hardcode credentials in scripts.
 
 ---
 
-## The Workflow: Step by Step
+## Example Series
 
-All scripts are in the `python/getting started/` folder. Each script prints the ID(s) you need to carry into the next step.
-
----
-
-### Step 1 — Authenticate
-**File:** `python/getting started/import-requests.py`
-
-Exchanges your credentials for a Bearer token. This is a reference script — all subsequent scripts include authentication internally.
-
-**Key concept:** The IMPLAN API returns the token as a plain string with `Bearer ` already prepended (e.g. `Bearer eyJ...`). Strip the prefix before storing it, then re-add it in request headers.
+This repository contains three series of scripts. Start with **Getting Started** if this is your first time.
 
 ---
 
-### Step 2 — Get Available Datasets
-**File:** `python/getting started/get-datasets.py`
+### Series 1 — Getting Started
 
-```bash
-python "python/getting started/get-datasets.py"
+**Location:** `python/getting started/`
+
+The foundational walkthrough. Eight self-contained scripts, each covering one step of the full impact analysis workflow:
+
+```
+Authenticate → Get Datasets → Find Region → Get Industry Codes
+    → Create Project → Add Events → Run Analysis → Get Results
 ```
 
-Returns the data years available for your aggregation scheme (e.g. 2021, 2022, 2023). Each dataset has a numeric ID.
+| Step | File | What It Does |
+|---|---|---|
+| 1 | `api-authenticate.py` | Exchange credentials for a Bearer token |
+| 2 | `get-datasets.py` | List available data years for your aggregation scheme |
+| 3 | `find-region.py` | Look up geographic regions (states, counties, MSAs) |
+| 4 | `get-industry-codes.py` | Browse industries by code and keyword |
+| 5 | `create-project.py` | Create the project container for your analysis |
+| 6 | `add-events.py` | Define an economic event and link it to a region and year |
+| 7 | `run-analysis.py` | Trigger the I-O model and poll for completion |
+| 8 | `get-results.py` | Retrieve direct, indirect, and induced economic impacts |
 
-**What to copy forward:** The `ID` for the data year you want to use.
-
----
-
-### Step 3 — Find Your Region
-**File:** `python/getting started/find-region.py`
-
-```bash
-python "python/getting started/find-region.py"
-```
-
-Looks up geographic regions (states, counties, MSAs) available for your dataset. Edit the configuration section at the top to set your aggregation scheme ID, dataset ID, region type, and search term.
-
-**What to copy forward:** The `hashId` for your target region.
+Each script prints the ID(s) you need to carry into the next step.
 
 ---
 
-### Step 4 — Look Up Industry Codes
-**File:** `python/getting started/get-industry-codes.py`
+### Series 2 — Sample Analysis
 
-```bash
-python "python/getting started/get-industry-codes.py"
-```
+**Location:** `python/sample analysis/`
 
-Returns the list of industries available under your aggregation scheme. Edit the `SEARCH` variable to filter by keyword (e.g. `"construction"`, `"health"`, `"retail"`).
-
-**What to copy forward:** The `Code` integer for the industry you want to analyze.
+The same eight-step workflow, pre-configured with a concrete example: a $500 million data center investment in Travis County, TX (2024 data, industry code 50). Run these scripts end-to-end to see a complete impact analysis with real numbers.
 
 ---
 
-### Step 5 — Create a Project
-**File:** `python/getting started/create-project.py`
+### Series 3 — Region Details
 
-```bash
-python "python/getting started/create-project.py"
-```
+**Location:** `python/region details/`
 
-Creates the project container that will hold your analysis. A project ties together the aggregation scheme, household data, and all events.
+A shorter, six-step workflow for accessing raw regional economic data — employment, output, value added, and input-output structure — without running a full impact analysis. Useful when you need baseline regional statistics rather than impact multipliers.
 
-**What to copy forward:** The `Project ID` (a GUID) printed at the end.
-
----
-
-### Step 6 — Add Events and Groups
-**File:** `python/getting started/add-events.py`
-
-```bash
-python "python/getting started/add-events.py"
-```
-
-This script does two things:
-1. **Creates an Event** — defines *what* economic activity is happening (industry + dollar value)
-2. **Creates a Group** — links the event to a *region* and *data year*
-
-Edit the configuration section with your Project ID, Region Hash ID, Dataset ID, and Industry Code from the previous steps.
-
-**What to copy forward:** The `Project ID` (same as before — you're now ready to run it).
+| Step | File | What It Does |
+|---|---|---|
+| 1 | `step1-authentication.py` | Authenticate |
+| 2 | `step2-find-region.py` | Look up a region by name or type |
+| 3 | `step3-create-group.py` | Create a project and group to anchor the regional model |
+| 4 | `step4-region-overview.py` | Export high-level employment, labor income, and output by industry |
+| 5 | `step5-industry-detail.py` | Export granular industry data (compensation, proprietor income, taxes) |
+| 6 | `step6-industry-summary.py` | Export input-output structure (output, intermediate inputs, value added) |
 
 ---
 
-### Step 7 — Run the Analysis
-**File:** `python/getting started/run-analysis.py`
-
-```bash
-python "python/getting started/run-analysis.py"
-```
-
-Triggers the I-O model calculation. IMPLAN processes the analysis in the background and returns a Run ID immediately. Small analyses typically complete within seconds.
-
-**What to copy forward:** The `Run ID` printed at the end.
-
----
-
-### Step 8 — Get Results
-**File:** `python/getting started/get-results.py`
-
-```bash
-python "python/getting started/get-results.py"
-```
-
-Retrieves the Summary Economic Indicators for your completed analysis — direct, indirect, and induced effects across Employment, Labor Income, Value Added, and Output.
-
-Set `RUN_ID` in the configuration section to the integer from Step 7.
-
----
-
-## Pointers for Success
-
-**Pass IDs forward carefully.** Each step produces an ID that the next step needs. The most common source of errors is using an ID from the wrong step or a stale run. The scripts print a `-->` line at the end to tell you exactly what to copy.
-
-**Aggregation scheme must be consistent.** The scheme ID you choose in Step 2 must be the same in every subsequent step. Mixing scheme IDs will cause silent failures or 400 errors.
-
-**Event titles must be unique within a project.** If you re-run `add-events.py` against the same project, the script automatically appends a timestamp to avoid conflicts.
-
-**The IMPLAN API is inconsistent about response formats.** Some endpoints return JSON, others return plain strings or integers. If you get a `JSONDecodeError`, the response is likely plain text — use `resp.text` instead of `resp.json()`.
-
-**GET requests should not include `Content-Type: application/json`.** Only include that header on POST/PUT requests with a body. Sending it on GET requests causes 400 errors from the IMPLAN API.
-
-**Small analyses complete faster than polling can detect.** If the status endpoint returns a 400 immediately after triggering a run, it often means the analysis finished before the first poll. The Run ID is still valid — go straight to `get-results.py`.
-
----
-
-## Key Intuition: How the Pieces Fit Together
-
-Understanding *why* the workflow is structured this way makes it easier to debug and extend:
+## How the Pieces Fit Together
 
 | Concept | What it is | Why it matters |
 |---|---|---|
-| **Aggregation Scheme** | How industries are grouped (e.g. 528 vs 546 sectors) | Must be consistent across all steps — it defines the model's industry vocabulary |
-| **Dataset** | A specific data year (e.g. 2022) | IMPLAN's regional economic data is published annually; you pick the year that matches your analysis period |
-| **Region / HashId** | A geographic area (state, county, MSA) | The I-O model is region-specific — the multipliers for a rural county are very different from a major metro |
-| **Project** | A container for your analysis | One project can hold multiple events and groups, letting you compare scenarios |
+| **Aggregation Scheme** | How industries are grouped (528 vs 546 sectors) | Must be consistent across all steps — defines the model's industry vocabulary |
+| **Dataset** | A specific data year (e.g. 2024) | IMPLAN's regional data is published annually; pick the year matching your analysis period |
+| **Region / HashId** | A geographic area (state, county, MSA, ZIP) | The I-O model is region-specific — multipliers for a rural county differ from a major metro |
+| **Project** | A container for your analysis | One project can hold multiple events and groups for scenario comparison |
 | **Event** | The economic "shock" being analyzed | Defines *what* changed — which industry, and by how much |
 | **Group** | Links an Event to a Region and data year | Defines *where* and *when* the event occurs; required to run the model |
-| **Run ID** | A unique ID for a single model execution | Each time you run a project, you get a new Run ID and a fresh set of results |
+| **Run ID** | A unique ID for one model execution | Each run produces a new Run ID and a fresh set of results |
 
 ---
 
-## Tips for Using LLMs (ChatGPT, Claude, etc.)
+## Common Pitfalls
 
-LLMs are excellent companions for API work. Here are the most effective ways to use them with these scripts:
+**Pass IDs forward carefully.** Each step produces an ID the next step needs. Scripts print a `-->` line at the end to tell you exactly what to copy.
 
-**Paste the error, not just the description.** LLMs diagnose errors much faster when you share the full traceback. Copy everything from `Traceback (most recent call last):` through the final error line.
+**Aggregation scheme must be consistent.** The scheme ID you choose for datasets must match every subsequent step. Mixing scheme IDs causes silent failures or 400 errors.
 
-**Include the relevant code block.** When asking about a specific error, paste the function or section where it occurred — not the entire script. The LLM can then reason about the exact context.
+**Response formats vary by endpoint.** Authentication returns a plain string, run analysis returns a plain integer, status returns a plain string, and results return CSV. Other endpoints return JSON. If you get a `JSONDecodeError`, use `resp.text` instead of `resp.json()`.
 
-**Ask it to explain API responses.** If you get an unexpected response, paste it and ask "what does this mean?" For example: *"The IMPLAN auth endpoint returned `Bearer eyJ...` as a plain string. Why does `resp.json()` fail on this?"*
+**Omit `Content-Type` on GET requests.** The IMPLAN API returns 400 if `Content-Type: application/json` is sent on a GET. Only include it on POST/PUT.
 
-**Use it to look up field names and endpoint patterns.** Prompt: *"I'm using the IMPLAN API. Based on this wiki page [paste content], what is the correct request body to create an IndustryOutput event?"*
+**Small analyses complete before polling starts.** If the status endpoint returns 400 immediately after triggering a run, the analysis finished before the first poll. The Run ID is still valid — go straight to `get-results.py`.
 
-**Ask it to adapt scripts to new scenarios.** Once you understand the base workflow, you can prompt: *"Modify add-events.py to loop over a list of industries and create one event per industry."* The annotated comments in these scripts give the LLM the context it needs to make accurate modifications.
+---
 
-**Verify suggestions against the official docs.** LLMs can hallucinate API details (wrong field names, incorrect URLs). Always cross-check against the [IMPLAN API Wiki](https://github.com/Implan-Group/api/wiki) before assuming a suggestion is correct.
+## Using an LLM to Write or Extend Scripts
+
+LLMs are effective for API scripting tasks. For best results:
+
+- Share `LLM_REFERENCE.md` and `CLAUDE.md` with the LLM as context before asking it to write or modify scripts
+- Paste the full traceback when debugging — not just a description of the error
+- Ask the LLM to explain unexpected API responses by pasting the raw response
+- Always verify field names and endpoint paths against the [IMPLAN API Wiki](https://github.com/Implan-Group/api/wiki) — LLMs can hallucinate API details
+
+See [LLM_REFERENCE.md](LLM_REFERENCE.md) for example prompts, code patterns, and a full API reference designed for LLM context.
 
 ---
 
@@ -228,17 +163,26 @@ LLMs are excellent companions for API work. Here are the most effective ways to 
 ```
 training-api-examples/
 ├── python/
-│   └── getting started/
-│       ├── .env                  # Your credentials (gitignored — never committed)
-│       ├── import-requests.py    # Step 1: Authentication reference
-│       ├── get-datasets.py       # Step 2: Available data years
-│       ├── find-region.py        # Step 3: Geographic region lookup
-│       ├── get-industry-codes.py # Step 4: Industry code lookup
-│       ├── create-project.py     # Step 5: Create analysis project
-│       ├── add-events.py         # Step 6: Add events and groups
-│       ├── run-analysis.py       # Step 7: Trigger I-O model
-│       └── get-results.py        # Step 8: Retrieve results
+│   ├── getting started/
+│   │   ├── .env                       # Your credentials (gitignored)
+│   │   ├── api-authenticate.py        # Step 1: Authentication reference
+│   │   ├── get-datasets.py            # Step 2: Available data years
+│   │   ├── find-region.py             # Step 3: Geographic region lookup
+│   │   ├── get-industry-codes.py      # Step 4: Industry code lookup
+│   │   ├── create-project.py          # Step 5: Create analysis project
+│   │   ├── add-events.py              # Step 6: Add events and groups
+│   │   ├── run-analysis.py            # Step 7: Trigger I-O model
+│   │   └── get-results.py             # Step 8: Retrieve results
+│   ├── sample analysis/
+│   │   ├── .env                       # Your credentials (gitignored)
+│   │   ├── step1-authentication.py    # through step7-get results.py
+│   │   └── ...
+│   └── region details/
+│       ├── .env                       # Your credentials (gitignored)
+│       ├── step1-authentication.py    # through step6-industry-summary.py
+│       └── ...
+├── LLM_REFERENCE.md                   # AI-assisted development reference
+├── CLAUDE.md                          # Claude Code agent instructions
 ├── .gitignore
-├── CLAUDE.md
 └── README.md
 ```
