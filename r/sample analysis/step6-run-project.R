@@ -48,11 +48,16 @@ cat(sprintf("Authenticated. Token preview: %s...%s\n\n",
 
 url <- paste0(BASE_URL, "/api/v1/impact/", PROJECT_ID)
 
+
+# req_method("POST") is required: httr2 defaults to GET when no body is
+# attached. The trigger endpoint expects POST but takes no request body,
+# so we must set the method explicitly — omitting this causes a 404.
 resp <- request(url) |>
   req_headers(
     Authorization  = paste("Bearer", token),
     `Content-Type` = "application/json"
   ) |>
+  req_method("POST") |>
   req_perform()
 
 # The response body is a plain integer as text (e.g. "605590"), not JSON.

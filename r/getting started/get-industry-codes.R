@@ -14,7 +14,7 @@ AGGREGATION_SCHEME_ID <- 14  # Must match the scheme used in your other scripts
 
 # Optional: filter results to industries whose description contains this text.
 # Set to "" to print all industries (there will be hundreds).
-SEARCH <- "nuclear"
+SEARCH <- "construction"
 
 # ── Step 1: Authenticate ───────────────────────────────────────────────────────
 get_token <- function(username, password) {

@@ -8,7 +8,9 @@
       "Bash(powershell.exe -Command \"& 'C:\\\\Users\\\\eric.clower\\\\Documents\\\\GitHub\\\\training-api-examples\\\\.venv\\\\Scripts\\\\python.exe' -c \\\\\"import requests; from dotenv import load_dotenv; import os; print\\('imports OK'\\)\\\\\"\")",
       "Bash(gh api:*)",
       "WebFetch(domain:github.com)",
-      "Bash(powershell.exe -Command \"Invoke-RestMethod -Uri 'https://api.github.com/repos/Implan-Group/api/contents/sampleCode/Python' -Method Get | ConvertTo-Json -Depth 3\")"
+      "Bash(powershell.exe -Command \"Invoke-RestMethod -Uri 'https://api.github.com/repos/Implan-Group/api/contents/sampleCode/Python' -Method Get | ConvertTo-Json -Depth 3\")",
+      "Bash(ls \"c:/Users/eric.clower/Documents/GitHub/implan-api-demos/r-api-demos/\" 2>/dev/null || echo \"DIRECTORY_NOT_FOUND\")",
+      "Read(//c/Users/eric.clower/Documents/GitHub/implan-api-demos/r-api-demos/**)"
     ]
   }
 }

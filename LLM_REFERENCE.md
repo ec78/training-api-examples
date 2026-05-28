@@ -228,9 +228,9 @@ If a 400 is returned immediately after triggering a run, the analysis finished b
 ```
 GET /api/v1/impact/results/SummaryEconomicIndicators/{runId}
 ```
-Response: **CSV text** (not JSON). Columns: `Impact`, `Employment`, `LaborIncome`, `ValueAdded`, `Output`
+Response: **CSV text** (not JSON). Columns: `GroupName`, `EventName`, `ModelName`, `Impact`, `Employment`, `LaborIncome`, `ValueAdded`, `Output`, `TagName`
 
-`Impact` values: `Direct`, `Indirect`, `Induced`, `Total`
+`Impact` values: `"1 - Direct"`, `"2 - Indirect"`, `"3 - Induced"` — **no pre-aggregated Total row is returned**. Sum the three rows to get total impact.
 
 #### Export Regional Overview
 ```
