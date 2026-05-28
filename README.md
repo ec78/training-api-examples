@@ -176,6 +176,7 @@ See [LLM_REFERENCE.md](LLM_REFERENCE.md) for example prompts, code patterns, and
 training-api-examples/
 ├── python/
 │   ├── getting started/
+│   │   ├── README.md                  # Scripts and configurable variables
 │   │   ├── .env                       # Your credentials (gitignored)
 │   │   ├── api-authenticate.py
 │   │   ├── get-datasets.py
@@ -186,13 +187,16 @@ training-api-examples/
 │   │   ├── run-analysis.py
 │   │   └── get-results.py
 │   ├── sample analysis/
+│   │   ├── README.md                  # Scripts and configurable variables
 │   │   ├── .env                       # Your credentials (gitignored)
 │   │   └── step1-authentication.py … step7-get results.py
 │   └── region details/
+│       ├── README.md                  # Scripts and configurable variables
 │       ├── .env                       # Your credentials (gitignored)
 │       └── step1-authentication.py … step6-industry-summary.py
 ├── r/
 │   ├── getting started/
+│   │   ├── README.md                  # Scripts and configurable variables
 │   │   ├── .env                       # Your credentials (gitignored)
 │   │   ├── api-authenticate.R
 │   │   ├── get-datasets.R
@@ -203,9 +207,11 @@ training-api-examples/
 │   │   ├── run-analysis.R
 │   │   └── get-results.R
 │   ├── sample analysis/
+│   │   ├── README.md                  # Scripts and configurable variables
 │   │   ├── .env                       # Your credentials (gitignored)
 │   │   └── step1-authentication.R … step7-get-results.R
 │   └── region details/
+│       ├── README.md                  # Scripts and configurable variables
 │       ├── .env                       # Your credentials (gitignored)
 │       └── step1-authentication.R … step6-industry-summary.R
 ├── LLM_REFERENCE.md                   # AI-assisted development reference

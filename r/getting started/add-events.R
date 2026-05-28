@@ -12,7 +12,7 @@ BASE_URL <- "https://api.implan.com"
 # ── Configuration ──────────────────────────────────────────────────────────────
 # Fill in the values from the previous steps before running this script.
 
-PROJECT_ID <- "77e3ff58-8622-49ed-9880-2eb8cf8cdebf"
+PROJECT_ID <- "6140275e-549e-4815-b598-ef1349cd2ea7"
 # --> From Step 4 (create-project.R): the GUID returned after project creation.
 #     Example: "496256c2-a089-4d42-a1a1-cafe73a43216"
 

@@ -10,7 +10,7 @@ PW   <- Sys.getenv("IMPLAN_PASSWORD")
 BASE_URL <- "https://api.implan.com"
 
 # ── Configuration ──────────────────────────────────────────────────────────────
-PROJECT_ID <- "77e3ff58-8622-49ed-9880-2eb8cf8cdebf"
+PROJECT_ID <- "6140275e-549e-4815-b598-ef1349cd2ea7"
 # --> From Step 4 (create-project.R) / Step 5 (add-events.R)
 #     The project must have at least one Group with at least one Event before
 #     you can run the analysis. If the project is incomplete, the API returns 400.
