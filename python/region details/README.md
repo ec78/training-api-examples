@@ -44,7 +44,7 @@ No configurable variables. Credentials load from `.env`.
 | `IS_MRIO` | `False` | Leave as `False` for single-region |
 | `REGION_HASH_ID` | *(paste from previous step)* | Copy from `step2-find-region.py` output |
 | `DATASET_ID` | `124` | Must match `step2-find-region.py` |
-| `DOLLAR_YEAR` | `2024` | Year monetary values are expressed in. Typically matches the dataset year. |
+| `DOLLAR_YEAR` | `2024` | Year monetary values are expressed in. |
 | `GROUP_TITLE` | `"Travis County Study Area"` | Descriptive label for this group. |
 
 ---

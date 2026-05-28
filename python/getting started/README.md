@@ -66,7 +66,7 @@ No configurable variables. Credentials load from `.env`.
 | `PROJECT_ID` | *(paste from previous step)* | Copy from `create-project.py` output |
 | `REGION_HASH_ID` | *(paste from previous step)* | Copy from `find-region.py` output |
 | `DATASET_ID` | `124` | Must match `find-region.py` |
-| `DOLLAR_YEAR` | `2026` | Year monetary values are expressed in. Typically matches the dataset year. |
+| `DOLLAR_YEAR` | `2026` | Year monetary values are expressed in. |
 | `EVENT_TITLE` | *(timestamped)* | Label for this event. Must be unique within the project. |
 | `EVENT_OUTPUT` | `1000000` | Dollar value of the economic activity being modeled. |
 | `INDUSTRY_CODE` | `1` | Industry code from `get-industry-codes.py`. Required — the analysis cannot run without it. |
