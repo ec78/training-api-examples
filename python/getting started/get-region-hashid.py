@@ -12,9 +12,8 @@ import time
 import requests
 from dotenv import load_dotenv
 
-# Reuses the credentials already set up for the "region details" examples in
-# this repo, rather than duplicating a .env file in this folder too.
-load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), "region details", ".env"))
+# Load credentials from the .env file next to this script
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env"))
 
 USER = os.getenv("IMPLAN_USERNAME")
 PW = os.getenv("IMPLAN_PASSWORD")
@@ -31,9 +30,9 @@ STATE_NAME = "Missouri"
 COUNTY_NAME = "Jackson County, MO"
 
 def get_bearer_token(username: str, password: str) -> str:
-    """POST to /auth; the response BODY is the ready-to-use Authorization header
+    """POST to /api/auth; the response BODY is the ready-to-use Authorization header
     value as-is -- do not prepend "Bearer " yourself."""
-    response = requests.post(f"{BASE_URL}/auth", json={"username": username, "password": password})
+    response = requests.post(f"{BASE_URL}/api/auth", json={"username": username, "password": password})
     response.raise_for_status()
     return response.text
 

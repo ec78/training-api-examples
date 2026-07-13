@@ -100,7 +100,7 @@ Authenticate → Get Datasets → Find Region → Get Industry Codes
 
 Each script prints the ID(s) you need to carry into the next step.
 
-The Python series also includes a bonus script, `find-region-children.py`: it looks up a County and then lists the Zip codes inside it, demonstrating a parent/child region lookup instead of `find-region.py`'s flat, nationwide search.
+The Python series also includes two bonus scripts: `find-region-children.py` looks up a County and then lists the Zip codes inside it, demonstrating a parent/child region lookup instead of `find-region.py`'s flat, nationwide search; `get-region-hashid.py` is a minimal County hashId lookup for when you already know the state and county name.
 
 ---
 
@@ -186,7 +186,7 @@ training-api-examples/
 │   │   ├── get-datasets.py
 │   │   ├── find-region.py
 │   │   ├── find-region-children.py    # Bonus: parent/child region lookup (County -> Zip)
-│   │   ├── get-region-hashid.py       # Standalone county hashId lookup (undocumented, unverified)
+│   │   ├── get-region-hashid.py       # Bonus: minimal county hashId lookup
 │   │   ├── get-industry-codes.py
 │   │   ├── create-project.py
 │   │   ├── add-events.py

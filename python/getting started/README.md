@@ -53,6 +53,18 @@ Finds a County, then asks the API for the Zip codes that live inside it — a pa
 
 ---
 
+### `get-region-hashid.py` *(bonus — not part of the numbered 8-step sequence)*
+Finds a County's hashId given a State name and County name — a minimal, single-purpose version of `find-region.py` for when you already know exactly which county you want.
+
+| Variable | Default | Notes |
+|---|---|---|
+| `AGGREGATION_SCHEME_ID` | `14` | Must match other scripts |
+| `DATASET_ID` | `124` | Data year ID — copy from `get-datasets.py` output |
+| `STATE_NAME` | `"Missouri"` | Full state name to search within |
+| `COUNTY_NAME` | `"Jackson County, MO"` | Must match the county's `description` field exactly (case-insensitive) |
+
+---
+
 ### `get-industry-codes.py`
 | Variable | Default | Notes |
 |---|---|---|
