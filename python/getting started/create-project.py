@@ -1,5 +1,6 @@
 import os
 import requests
+from datetime import datetime
 from dotenv import load_dotenv
 
 # Load credentials from the .env file next to this script
@@ -15,7 +16,11 @@ AUTH_URL = f"{BASE_URL}/api/auth"
 # A Project is the container for your entire impact analysis.
 # It holds the industry grouping scheme, household data, and all events/groups.
 
-PROJECT_TITLE = "Training API Example"  # A descriptive name for this project
+# Append a timestamp to ensure the title is unique in your account. IMPLAN
+# requires all Project titles to be unique account-wide — re-running this
+# script without a timestamp would fail with "A saved Project with this name
+# already exists."
+PROJECT_TITLE = f"Training API Example {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
 
 AGGREGATION_SCHEME_ID = 14  # 528-industry grouping scheme
                              # Must match what you used in get-datasets.py and
@@ -75,7 +80,10 @@ project_payload = {
 }
 
 resp = requests.post(url, json=project_payload, headers=headers)
-resp.raise_for_status()
+
+if not resp.ok:
+    print(f"  Project creation failed ({resp.status_code}): {resp.text!r}")
+    resp.raise_for_status()
 
 project = resp.json()
 

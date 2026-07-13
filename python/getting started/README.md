@@ -37,8 +37,19 @@ No configurable variables. Credentials load from `.env`.
 |---|---|---|
 | `AGGREGATION_SCHEME_ID` | `14` | Must match `get-datasets.py` |
 | `DATASET_ID` | `124` | Data year ID — copy from `get-datasets.py` output |
-| `REGION_TYPE` | `"State"` | Geographic level to search: `"Country"`, `"State"`, `"County"`, `"MSA"`, or `"Zip"` |
+| `REGION_TYPE` | `"State"` | Geographic level to search: `"Country"`, `"State"`, `"County"`, `"MSA"`, or `"ZipCode"` |
 | `REGION_SEARCH` | `"Minnesota"` | Text to match against region names. Change to your target geography. |
+
+---
+
+### `find-region-children.py` *(bonus — not part of the numbered 8-step sequence)*
+Finds a County, then asks the API for the Zip codes that live inside it — a parent/child region lookup rather than `find-region.py`'s flat, nationwide search.
+
+| Variable | Default | Notes |
+|---|---|---|
+| `AGGREGATION_SCHEME_ID` | `14` | Must match other scripts |
+| `DATASET_ID` | `124` | Data year ID — copy from `get-datasets.py` output |
+| `COUNTY_SEARCH` | `"Travis County"` | Text to match against County names. Change to your target county. |
 
 ---
 

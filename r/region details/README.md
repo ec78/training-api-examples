@@ -36,7 +36,7 @@ No configurable variables. Credentials load from `.env`.
 |---|---|---|
 | `AGGREGATION_SCHEME_ID` | `14` | Must match all subsequent steps |
 | `DATASET_ID` | `124` | Data year ID. Run `get-datasets.R` from the getting started series to see valid IDs. |
-| `REGION_TYPE` | `"County"` | Geographic level: `"Country"`, `"State"`, `"County"`, `"MSA"`, or `"Zip"` |
+| `REGION_TYPE` | `"County"` | Geographic level: `"Country"`, `"State"`, `"County"`, `"MSA"`, or `"ZipCode"` |
 | `REGION_SEARCH` | `"Travis County"` | Text to match against region names. Change to your target geography. |
 
 ---

@@ -19,7 +19,8 @@ DATASET_ID <- 124            # The data year to use — replace with an ID from
                              # step2-get-datasets.R (e.g., 124 = 2024 dataset)
 
 # What type of region to search for.
-# Common values: "Country", "State", "County", "MSA", "Zip"
+# Common values: "Country", "State", "County", "MSA", "ZipCode"
+# Note: the ZIP code level's filter value is "ZipCode", not "Zip".
 REGION_TYPE <- "County"
 
 # Text to search for within the returned region descriptions.

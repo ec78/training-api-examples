@@ -23,7 +23,8 @@ DATASET_ID <- 124             # The data year to search within.
                                # Example: 124 = 2024 dataset
 
 REGION_TYPE <- "County"       # The geographic level to search.
-                               # Common values: "Country", "State", "County", "MSA", "Zip"
+                               # Common values: "Country", "State", "County", "MSA", "ZipCode"
+                               # Note: the ZIP code level's filter value is "ZipCode", not "Zip".
 
 REGION_SEARCH <- "Travis County"   # Text to match against region descriptions.
                                     # The script filters all regions of REGION_TYPE

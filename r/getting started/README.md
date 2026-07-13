@@ -43,7 +43,7 @@ No configurable variables. Credentials load from `.env`.
 |---|---|---|
 | `AGGREGATION_SCHEME_ID` | `14` | Must match `get-datasets.R` |
 | `DATASET_ID` | `124` | Data year ID — copy from `get-datasets.R` output |
-| `REGION_TYPE` | `"State"` | Geographic level to search: `"Country"`, `"State"`, `"County"`, `"MSA"`, or `"Zip"` |
+| `REGION_TYPE` | `"State"` | Geographic level to search: `"Country"`, `"State"`, `"County"`, `"MSA"`, or `"ZipCode"` |
 | `REGION_SEARCH` | `"Minnesota"` | Text to match against region names. Change to your target geography. |
 
 ---

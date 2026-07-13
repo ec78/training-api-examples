@@ -118,7 +118,7 @@ The API supports geographic regions at these levels (passed as `regionTypeFilter
 | `State` | 50 states + DC |
 | `County` | 3,000+ counties |
 | `MSA` | Metropolitan Statistical Area |
-| `Zip` | ZIP code (limited availability) |
+| `ZipCode` | ZIP code (limited availability) |
 
 Regions are identified by `hashId` (used in event groups and export queries) and `urid` (used internally).
 

@@ -10,7 +10,8 @@
       "WebFetch(domain:github.com)",
       "Bash(powershell.exe -Command \"Invoke-RestMethod -Uri 'https://api.github.com/repos/Implan-Group/api/contents/sampleCode/Python' -Method Get | ConvertTo-Json -Depth 3\")",
       "Bash(ls \"c:/Users/eric.clower/Documents/GitHub/implan-api-demos/r-api-demos/\" 2>/dev/null || echo \"DIRECTORY_NOT_FOUND\")",
-      "Read(//c/Users/eric.clower/Documents/GitHub/implan-api-demos/r-api-demos/**)"
+      "Read(//c/Users/eric.clower/Documents/GitHub/implan-api-demos/r-api-demos/**)",
+      "Bash(C:\\\\Users\\\\eric.clower\\\\.local\\\\bin\\\\python3.14.exe -c \"import openpyxl; wb = openpyxl.load_workbook\\('C:/Users/eric.clower/Documents/GitHub/implan-api-demos/r-api-demos/nuclear-energy/Solar and Battery Mock Input form.xlsx', data_only=True\\); [print\\(f'SHEET: {name}'\\) or [print\\([cell.value for cell in row]\\) for row in wb[name].iter_rows\\(max_row=20\\)] for name in wb.sheetnames]\")"
     ]
   }
 }

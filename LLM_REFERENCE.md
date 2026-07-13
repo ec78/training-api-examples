@@ -43,7 +43,7 @@ IMPLAN models are region-specific. The I-O multipliers for a rural county differ
 | `State` | 50 states + DC |
 | `County` | 3,000+ counties |
 | `MSA` | Metropolitan Statistical Area (major metros) |
-| `Zip` | ZIP code level (limited availability) |
+| `ZipCode` | ZIP code level (limited availability) |
 
 **Key identifiers:**
 - `hashId` — used in event groups and regional export queries; the primary region reference in API calls
@@ -141,7 +141,8 @@ Returns the top-level region (USA). Confirms the dataset is valid.
 ```
 GET /api/v1/region/{aggregationSchemeId}/{datasetId}/children?regionTypeFilter={type}
 ```
-Returns regions of a given type (State, County, MSA, Zip). Response: JSON array.
+Returns regions of a given type (State, County, MSA, ZipCode). Response: JSON array.
+Note: the ZIP code level's filter value is `ZipCode`, not `Zip` — `Zip` returns a 400.
 ```json
 [{ "hashId": "abc123", "description": "Travis, TX", "regionType": "County", "urid": 99999 }, ...]
 ```
