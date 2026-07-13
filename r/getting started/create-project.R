@@ -13,7 +13,11 @@ BASE_URL <- "https://api.implan.com"
 # A Project is the container for your entire impact analysis.
 # It holds the industry grouping scheme, household data, and all events/groups.
 
-PROJECT_TITLE <- "Training API Example"  # A descriptive name for this project
+# Append a timestamp to ensure the title is unique in your account. IMPLAN
+# requires all Project titles to be unique account-wide — re-running this
+# script without a timestamp would fail with "A saved Project with this name
+# already exists."
+PROJECT_TITLE <- paste("Training API Example", format(Sys.time(), "%Y-%m-%d %H:%M:%S"))
 
 AGGREGATION_SCHEME_ID <- 14  # 528-industry grouping scheme
                               # Must match what you used in get-datasets.R and
@@ -73,7 +77,14 @@ resp <- request(url) |>
     `Content-Type` = "application/json"
   ) |>
   req_body_json(project_payload) |>
+  req_error(is_error = \(r) FALSE) |>
   req_perform()
+
+if (resp_status(resp) < 200 || resp_status(resp) >= 300) {
+  cat(sprintf("  Project creation failed (%d): %s\n",
+              resp_status(resp), resp_body_string(resp)))
+  stop("Project creation failed.")
+}
 
 project <- resp_body_json(resp)
 

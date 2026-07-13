@@ -13,7 +13,11 @@ BASE_URL <- "https://api.implan.com"
 # A Project is the container for your entire impact analysis.
 # It holds the industry grouping scheme, household data, and all events/groups.
 
-PROJECT_TITLE <- "Travis Co. Data Center"  # A descriptive name for this project
+# Append a timestamp to ensure the title is unique in your account. IMPLAN
+# requires all Project titles to be unique account-wide — re-running this
+# script without a timestamp would fail with "A saved Project with this name
+# already exists."
+PROJECT_TITLE <- paste("Travis Co. Data Center", format(Sys.time(), "%Y-%m-%d %H:%M:%S"))
 
 AGGREGATION_SCHEME_ID <- 14  # 528-industry grouping scheme
                               # Must match what you used in step2 and step3 —
@@ -73,7 +77,14 @@ resp <- request(url) |>
     HouseholdSetId      = HOUSEHOLD_SET_ID,
     IsMrio              = IS_MRIO
   )) |>
+  req_error(is_error = \(r) FALSE) |>
   req_perform()
+
+if (resp_status(resp) < 200 || resp_status(resp) >= 300) {
+  cat(sprintf("  Project creation failed (%d): %s\n",
+              resp_status(resp), resp_body_string(resp)))
+  stop("Project creation failed.")
+}
 
 # resp_body_json() returns a named list with the newly created project's details.
 project <- resp_body_json(resp)

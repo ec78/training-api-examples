@@ -13,7 +13,7 @@ BASE_URL = "https://api.implan.com"
 AUTH_URL = f"{BASE_URL}/api/auth"
 
 # ── Configuration ──────────────────────────────────────────────────────────────
-PROJECT_ID = "531b9cea-9c82-495d-bc23-a2b6f05f8b1f"
+PROJECT_ID = "bf12f9c7-19a0-49e8-b29b-e61a4a7b80bb"
 # --> From Step 4 (create-project.py) / Step 5 (add-events.py)
 #     The project must have at least one Group with at least one Event before
 #     you can run the analysis. If the project is incomplete, the API returns 400.

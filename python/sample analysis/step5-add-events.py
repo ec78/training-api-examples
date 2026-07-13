@@ -15,7 +15,7 @@ AUTH_URL = f"{BASE_URL}/api/auth"
 # ── Configuration ──────────────────────────────────────────────────────────────
 # Fill in the values from the previous steps before running this script.
 
-PROJECT_ID = "531b9cea-9c82-495d-bc23-a2b6f05f8b1f"
+PROJECT_ID = "bf12f9c7-19a0-49e8-b29b-e61a4a7b80bb"
 # --> From Step 4 (create-project.py): the GUID returned after project creation.
 #     Example: "496256c2-a089-4d42-a1a1-cafe73a43216"
 
