@@ -44,7 +44,7 @@ No configurable variables. Credentials load from `.env`.
 ### `step3-create-group.R`
 | Variable | Default | Notes |
 |---|---|---|
-| `PROJECT_TITLE` | `"Travis Co. Region Study"` | **Must be unique in your account.** |
+| `PROJECT_TITLE` | *(timestamped)* | e.g. `"Travis Co. Region Study 2026-07-13 14:32:01"`. Project titles must be unique account-wide — the timestamp guarantees that on every run. |
 | `AGGREGATION_SCHEME_ID` | `14` | Must match `step2-find-region.R` |
 | `HOUSEHOLD_SET_ID` | `1` | Leave as `1` |
 | `IS_MRIO` | `FALSE` | Leave as `FALSE` for single-region |

@@ -38,7 +38,7 @@ No configurable variables. Credentials load from `.env`.
 ### `step3-create-group.py`
 | Variable | Default | Notes |
 |---|---|---|
-| `PROJECT_TITLE` | `"Travis Co. Region Study"` | **Must be unique in your account.** |
+| `PROJECT_TITLE` | *(timestamped)* | e.g. `"Travis Co. Region Study 2026-07-13 14:32:01"`. Project titles must be unique account-wide — the timestamp guarantees that on every run. |
 | `AGGREGATION_SCHEME_ID` | `14` | Must match `step2-find-region.py` |
 | `HOUSEHOLD_SET_ID` | `1` | Leave as `1` |
 | `IS_MRIO` | `False` | Leave as `False` for single-region |
@@ -84,8 +84,8 @@ Pulls one industry across every state (+ DC) and every published data year, comb
 | `AGGREGATION_SCHEME_ID` | `14` | Must match earlier steps |
 | `INDUSTRY_CODE` | `"40"` | The single industry to track. Run `get-industry-codes.py` (getting started series) to find a code. |
 | `STATE_REGION_TYPE` | `"State"` | Leave as `"State"` to cover all 50 states + DC |
-| `PROJECT_TITLE` | `"US Industry Time Series Study"` | **Must be unique in your account.** |
+| `PROJECT_TITLE` | *(timestamped)* | e.g. `"US Industry Time Series Study 2026-07-13 14:32:01"`. Project titles must be unique account-wide — the timestamp guarantees that on every run. |
 | `HOUSEHOLD_SET_ID` | `1` | Leave as `1` |
 | `IS_MRIO` | `False` | Leave as `False` for single-region |
-| `MAX_STATES` | `None` | Cap the number of states pulled (alphabetically). Set low (e.g. `3`) for a quick test — the full run makes hundreds of API calls. |
+| `MAX_STATES` | `3` | Cap the number of states pulled (alphabetically). Currently set low for a quick test run — set to `None` to pull all 50 states + DC (hundreds of API calls). |
 | `MAX_DATASETS` | `None` | Cap the number of data years pulled (most recent first). |

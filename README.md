@@ -100,6 +100,8 @@ Authenticate → Get Datasets → Find Region → Get Industry Codes
 
 Each script prints the ID(s) you need to carry into the next step.
 
+The Python series also includes a bonus script, `find-region-children.py`: it looks up a County and then lists the Zip codes inside it, demonstrating a parent/child region lookup instead of `find-region.py`'s flat, nationwide search.
+
 ---
 
 ### Series 2 — Sample Analysis
@@ -125,6 +127,8 @@ A six-step workflow for accessing raw regional economic data — employment, out
 | 5 | `step5-industry-detail.py` | `step5-industry-detail.R` | Export granular industry data (compensation, proprietor income, taxes) |
 | 6 | `step6-industry-summary.py` | `step6-industry-summary.R` | Export input-output structure (output, intermediate inputs, value added) |
 
+The Python series also includes a bonus 7th script, `step7-industry-time-series.py`, with no R equivalent yet: it pulls one industry across every state and every published data year, printing an Employment and Output matrix over time.
+
 ---
 
 ## How the Pieces Fit Together
@@ -143,7 +147,7 @@ A six-step workflow for accessing raw regional economic data — employment, out
 
 ## Common Pitfalls
 
-**Project titles must be unique.** The API returns an error if you attempt to create a project with a title that already exists in your account. If you re-run `create-project.py` (or `create-project.R`) without changing `PROJECT_TITLE`, it will fail. Either update the title or delete the existing project in IMPLAN Cloud before re-running.
+**Project titles must be unique.** The API returns an error if you attempt to create a project with a title that already exists in your account. Every script that creates a project appends a timestamp to `PROJECT_TITLE` for this reason, so re-running them is safe. If you hardcode your own title, re-running without changing it will fail — either update the title or delete the existing project in IMPLAN Cloud first.
 
 **Pass IDs forward carefully.** Each step produces an ID the next step needs. Scripts print a `-->` line at the end to tell you exactly what to copy.
 
@@ -181,6 +185,8 @@ training-api-examples/
 │   │   ├── api-authenticate.py
 │   │   ├── get-datasets.py
 │   │   ├── find-region.py
+│   │   ├── find-region-children.py    # Bonus: parent/child region lookup (County -> Zip)
+│   │   ├── get-region-hashid.py       # Standalone county hashId lookup (undocumented, unverified)
 │   │   ├── get-industry-codes.py
 │   │   ├── create-project.py
 │   │   ├── add-events.py
@@ -193,7 +199,7 @@ training-api-examples/
 │   └── region details/
 │       ├── README.md                  # Scripts and configurable variables
 │       ├── .env                       # Your credentials (gitignored)
-│       └── step1-authentication.py … step6-industry-summary.py
+│       └── step1-authentication.py … step7-industry-time-series.py
 ├── r/
 │   ├── getting started/
 │   │   ├── README.md                  # Scripts and configurable variables

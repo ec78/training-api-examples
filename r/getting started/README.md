@@ -59,7 +59,7 @@ No configurable variables. Credentials load from `.env`.
 ### `create-project.R`
 | Variable | Default | Notes |
 |---|---|---|
-| `PROJECT_TITLE` | `"Training API Example"` | Name for this project. **Must be unique in your account.** |
+| `PROJECT_TITLE` | *(timestamped)* | e.g. `"Training API Example 2026-07-13 14:32:01"`. Project titles must be unique account-wide — the timestamp guarantees that on every run. |
 | `AGGREGATION_SCHEME_ID` | `14` | Must match all other scripts. Cannot be changed after project creation. |
 | `HOUSEHOLD_SET_ID` | `1` | Leave as `1` for standard IMPLAN household data. |
 | `IS_MRIO` | `FALSE` | `FALSE` = single-region analysis (standard). `TRUE` = multi-region (advanced). |

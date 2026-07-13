@@ -53,7 +53,7 @@ No configurable variables. Credentials load from `.env`.
 ### `step4-create-project.R`
 | Variable | Default | Notes |
 |---|---|---|
-| `PROJECT_TITLE` | `"Travis Co. Data Center"` | **Must be unique in your account.** Change if you have already created a project with this name. |
+| `PROJECT_TITLE` | *(timestamped)* | e.g. `"Travis Co. Data Center 2026-07-13 14:32:01"`. Project titles must be unique account-wide — the timestamp guarantees that on every run. |
 | `AGGREGATION_SCHEME_ID` | `14` | Pre-set |
 | `HOUSEHOLD_SET_ID` | `1` | Leave as `1` |
 | `IS_MRIO` | `FALSE` | Pre-set |
