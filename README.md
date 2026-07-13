@@ -145,6 +145,27 @@ The Python series also includes a bonus 7th script, `step7-industry-time-series.
 
 ---
 
+## Universal vs. Account-Specific Identifiers
+
+Some IDs you see hardcoded in these scripts are shared IMPLAN reference data — the exact same value will work in your account too. Others are generated inside one specific account and cannot be reused anywhere else. Knowing which is which tells you what you actually have to change to run these scripts yourself, versus what you can leave as-is.
+
+| Identifier | Scope | Why |
+|---|---|---|
+| `AGGREGATION_SCHEME_ID` (`14`, `8`) | Universal | Fixed scheme constants defined by IMPLAN — the same for every account |
+| `DATASET_ID` (e.g. `124`) | Universal | Data-year IDs are the same for every account using a given scheme |
+| Region `hashId` / `urid` | Universal | Identifies a geography (e.g. Travis County, TX) in IMPLAN's shared reference data. Verified: creating Groups in different projects — even different accounts — for the same region and dataset returns the identical `hashId`, `urid`, and `modelId` every time. |
+| `modelId` | Universal | Same reasoning as `hashId` — tied to the region + dataset + scheme combination, not to any one account |
+| Industry `code` | Universal | The same industry codes apply to every account using a given aggregation scheme |
+| `HouseholdSetId` (`1`) | Universal | Standard default, same for everyone |
+| `PROJECT_ID` | **Account-specific** | A GUID created inside your account when you create a project — only your account can use it |
+| Event `id` | **Account-specific** | Created inside your project when you create an event; belongs to that project |
+| `RUN_ID` | **Account-specific** | Produced by triggering an analysis under your own project |
+| `PROJECT_TITLE` / `EVENT_TITLE` / `GROUP_TITLE` | User-chosen | Not system-generated, but titles must be unique within your account or project — pick your own (or rely on the timestamp suffix already built into the project-creation scripts) |
+
+**In practice:** every hardcoded region `hashId`, industry `code`, `DATASET_ID`, and `AGGREGATION_SCHEME_ID` shown in these scripts will work in your account exactly as written — you only need to change them if you want a different region, industry, or data year. But every `PROJECT_ID`, event `id`, and `RUN_ID` shown is an example from someone else's account — those you must generate yourself by running the earlier steps in your own account first.
+
+---
+
 ## Common Pitfalls
 
 **Project titles must be unique.** The API returns an error if you attempt to create a project with a title that already exists in your account. Every script that creates a project appends a timestamp to `PROJECT_TITLE` for this reason, so re-running them is safe. If you hardcode your own title, re-running without changing it will fail — either update the title or delete the existing project in IMPLAN Cloud first.
